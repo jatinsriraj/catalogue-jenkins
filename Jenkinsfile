@@ -34,9 +34,10 @@ environment{
                 script{
                     withAWS(credentials: 'aws-auth', region: "${REGION}") {
                         sh """
-                            aws ecr get-login-password --region ${REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com
-                        docker tag catalogue:${VERSION}  ${REPO_URI}:${VERSION}
-                        docker push ${REPO_URI}:${VERSION}
+                            aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 936411044994.dkr.ecr.ap-south-1.amazonaws.com
+                        docker build -t cata-1 .
+                        docker tag cata-1:latest 936411044994.dkr.ecr.ap-south-1.amazonaws.com/cata-1:latest
+                        docker push 936411044994.dkr.ecr.ap-south-1.amazonaws.com/cata-1:latest
                         """
                     }
                 }
